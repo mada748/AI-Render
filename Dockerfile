@@ -2,7 +2,10 @@ FROM ollama/ollama:latest
 
 ENV OLLAMA_HOST=0.0.0.0:11434
 
-ENV OLLAMA_MODELS=/data/models
+RUN ollama serve & \
+    sleep 10 && \
+    ollama pull qwen2:0.5b && \
+    pkill ollama
 
 EXPOSE 11434
 
